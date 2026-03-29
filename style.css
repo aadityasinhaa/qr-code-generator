@@ -103,10 +103,18 @@ body {
 }
 
 .batman-logo {
-    width: 120px;
-    height: auto;
-    fill: var(--accent);
-    margin-bottom: 0.5rem;
+    width: 200px;
+    height: 80px;
+    background-color: var(--accent);
+    mask-image: url('batman-logo.png');
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url('batman-logo.png');
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    margin: 0 auto 0.5rem auto;
     filter: drop-shadow(0 4px 12px var(--accent-light));
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
