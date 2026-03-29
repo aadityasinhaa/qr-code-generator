@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern QR Code Generator</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
+        <i data-lucide="moon"></i>
+    </button>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="app-title">QR Code<br>Generator</h1>
+            <p>Generate high-quality QR codes instantly.</p>
+        </header>
+
+        <!-- Main Content (Glassmorphism card) -->
+        <main class="main-card glass-panel">
+            
+            <!-- Type Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-target="text-tab">
+                    <i data-lucide="link"></i> Text / Link
+                </button>
+                <button class="tab-btn" data-target="image-tab">
+                    <i data-lucide="image"></i> Image
+                </button>
+            </div>
+
+            <!-- Inputs Container -->
+            <div class="inputs-container">
+                <!-- Text / Link Input Panel -->
+                <div id="text-tab" class="tab-content active">
+                    <div class="input-group">
+                        <label for="qr-text">Enter URL or Text</label>
+                        <textarea id="qr-text" placeholder="https://example.com" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <!-- Image Input Panel -->
+                <div id="image-tab" class="tab-content">
+                    <div class="input-group">
+                        <label>Upload Image</label>
+                        <div class="upload-area" id="upload-area">
+                            <input type="file" id="qr-image" accept="image/*" hidden>
+                            <div class="upload-placeholder" id="upload-placeholder">
+                                <i data-lucide="upload-cloud"></i>
+                                <span>Click to Upload or Drag & Drop</span>
+                                <small>PNG, JPG, SVG</small>
+                            </div>
+                            <!-- Image Preview -->
+                            <div class="image-preview-container hidden" id="image-preview-container">
+                                <img id="image-preview" src="" alt="Preview">
+                                <button class="btn-icon remove-btn" id="remove-image">
+                                    <i data-lucide="x"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert-info hidden" id="image-resize-warning">
+                        <i data-lucide="info"></i>
+                        <small>Images are downscaled automatically to fit standard QR limits.</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="settings-group">
+                <div class="input-group row-align">
+                    <label for="qr-size">Size:</label>
+                    <select id="qr-size">
+                        <option value="128">Small (128x128)</option>
+                        <option value="256" selected>Medium (256x256)</option>
+                        <option value="512">Large (512x512)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="primary-actions">
+                <button class="btn primary full-width" id="btn-generate">
+                    <span class="btn-text">Generate QR Code</span>
+                    <i data-lucide="zap"></i>
+                </button>
+                <button class="btn secondary" id="btn-clear" aria-label="Clear">
+                    <i data-lucide="refresh-cw"></i>
+                </button>
+            </div>
+
+            <!-- Output Container (Hidden initially) -->
+            <div class="output-container hidden" id="output-container">
+                <div class="qr-wrapper" id="qrcode-box">
+                    <!-- QRCode gets generated inside here -->
+                </div>
+                <!-- Loading State overlay -->
+                <div class="loading-overlay hidden" id="loading-overlay">
+                    <div class="spinner"></div>
+                </div>
+                
+                <div class="output-actions">
+                    <button class="btn secondary" id="btn-download">
+                        <i data-lucide="download"></i> Download
+                    </button>
+                    <!-- Copy Link only makes sense for text URLs -->
+                    <button class="btn secondary" id="btn-copy">
+                        <i data-lucide="copy"></i> Copy Value
+                    </button>
+                </div>
+            </div>
+            
+        </main>
+
+        <!-- History Section -->
+        <section class="history-section glass-panel hidden" id="history-section">
+            <div class="history-header">
+                <h3>Recent Items</h3>
+                <button class="btn-text-only" id="btn-clear-history">Clear</button>
+            </div>
+            <div class="history-list" id="history-list">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Hidden Canvas for Image Resizing -->
+    <canvas id="resize-canvas" hidden></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
