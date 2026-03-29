@@ -102,6 +102,18 @@ body {
     text-align: center;
 }
 
+.batman-logo {
+    width: 120px;
+    height: auto;
+    fill: var(--accent);
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 4px 12px var(--accent-light));
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.batman-logo:hover {
+    transform: scale(1.1) rotate(-2deg);
+}
+
 /* KEEP BRUTALIST TITLE PER USER REQUEST */
 .app-title {
     font-family: 'Bebas Neue', sans-serif;
