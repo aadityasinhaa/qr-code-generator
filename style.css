@@ -316,6 +316,7 @@ textarea:focus, select:focus {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    white-space: nowrap;
     transition: transform 0.1s, box-shadow 0.2s, background-color 0.2s;
 }
 .btn:hover {
@@ -479,3 +480,35 @@ textarea:focus, select:focus {
 }
 
 .hidden { display: none !important; }
+
+/* Responsive Adjustments for Mobile */
+@media (max-width: 520px) {
+    body {
+        padding: 1rem;
+    }
+    .app-title {
+        font-size: 3.5rem;
+    }
+    .main-card {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    .btn {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+    .primary-actions {
+        gap: 0.5rem;
+    }
+    .output-actions {
+        flex-direction: column; /* Stack download & copy buttons */
+        gap: 0.5rem;
+    }
+    .output-actions .btn {
+        width: 100%;
+    }
+    .tab-btn {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.95rem;
+    }
+}
