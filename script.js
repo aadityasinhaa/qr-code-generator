@@ -52,7 +52,7 @@ const toggleTheme = () => {
 };
 
 const loadTheme = () => {
-    const savedTheme = localStorage.getItem('qr-theme') || 'light';
+    const savedTheme = localStorage.getItem('qr-theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     const iconStr = savedTheme === 'light' ? 'moon' : 'sun';
     themeToggle.innerHTML = `<i data-lucide="${iconStr}"></i>`;
